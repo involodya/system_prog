@@ -2,7 +2,7 @@
 
 
 bool isZero(double n) {
-    if (-1e-9 < n && n < 1e-9)
+    if (-ACCURACY < n && n < ACCURACY)
         return true;
     return false;
 }
