@@ -3,4 +3,4 @@ project(system_prog)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(system_prog main.c defines.h solve.h solve.c unittest.h unittest.c)
+add_executable(system_prog main.cpp defines.h stack.cpp stack.h)
