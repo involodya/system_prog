@@ -1,13 +1,5 @@
 #include "unittest.h"
 
-struct SquarePolynomial {
-    double A;
-    double B;
-    double C;
-    size_t nRoots;
-    double x1;
-    double x2;
-};
 
 struct SquarePolynomial tests[NUMBER_OF_TESTS];
 

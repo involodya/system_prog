@@ -1,9 +1,9 @@
-//-------------------------------------------------
+//!
 //! The squire equations solver programme
 //!     @version Vers 2.0
 //!     @date 21. 09. 2021
 //!     @brief Solving task #1 for the course "Professional Programming"
-//-------------------------------------------------
+//!
 
 #include <stdio.h>
 

@@ -1,5 +1,11 @@
-#define SS_INF_ROOTS -1         // code for an infinite number of solutions
-#define NUMBER_OF_TESTS 7       // number of unittest
-#define ACCURACY 1e-9           // accuracy parameter
+//! code for an infinite number of solutions
+#define SS_INF_ROOTS -1
 
-//#define _TEST // flag of test mode
+//! number of unittest
+#define NUMBER_OF_TESTS 7
+
+//! accuracy parameter
+#define ACCURACY 1e-9
+
+//! flag of test mode
+#define _TEST

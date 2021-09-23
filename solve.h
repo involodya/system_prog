@@ -5,17 +5,16 @@
 
 #include "defines.h"
 
-//------------------------------------------------
+//!
 //! Check is number a zero
 //!
 //! @param [in] n double number
 //!
 //! @return is n at a distance of 1e-9 about zero
 //!
-//------------------------------------------------
 bool isZero(double n);
 
-//------------------------------------------------
+//!
 //! Solves a square equation ax2 + bx + c = 0
 //!
 //! @param [in] a a-coefficient
@@ -28,5 +27,5 @@ bool isZero(double n);
 //!
 //! @note In case of infinite number of roots,
 //! returns SS_INF_ROOTS.
-//------------------------------------------------
+//!
 int SolveSquare(double a, double b, double c, double *x1, double *x2);
