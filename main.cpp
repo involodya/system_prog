@@ -1,13 +1,9 @@
 //-------------------------------------------------
 //! Onegin program
-//!     @version Vers 1.1
-//!     @date 23. 09. 2021
+//!     @version Vers 2.0
+//!     @date 29. 09. 2021
 //!     @brief Solving task #2 for the course "Professional Programming"
 //-------------------------------------------------
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
 
 #include "defines.h"
 #include "solve.h"
@@ -18,45 +14,51 @@ int main() {
     printf("# Onegin\n"
            "# @involodya, 2021\n\n");
 
-    size_t size_f = 0, size_spec = 0; // размер файла в байтах, размер файла в байтах без \r
-    FILE *fp = fopen("../onegin.txt", "r");
+    FILE *fileInput = fopen("../onegin.txt", "r");
 
-    fseek(fp, 0, SEEK_END);
-    size_f = ftell(fp);
-    fseek(fp, 0, SEEK_SET);
+    //! размер файла в байтах
+    size_t fileSize = 0;
+    fseek(fileInput, 0, SEEK_END);
+    fileSize = (size_t) ftell(fileInput);
+    fseek(fileInput, 0, SEEK_SET);
 
-    char *mem = (char *) calloc(size_f, sizeof(char));
+    //! память под текст
+    char *mem = (char *) calloc(fileSize, sizeof(char));
     assert(mem);
 
-    size_spec = fread(mem, sizeof(char), size_f, fp);
+    //! размер файла в байтах без \r
+    size_t fileRealSize = 0;
+    //! Записываем в mem кусок из fileInput размером fileSize (т.е. весь файл)
+    fileRealSize = fread(mem, sizeof(char), fileSize, fileInput);
+    fclose(fileInput);
 
-    int k = 0;
-    for (int i = 0; i < size_spec; ++i) {
-        printf("%d ", (int) mem[i]);
+    //! вычисляем количество строк
+    size_t linesNumber = 0;
+    for (size_t i = 0; i < fileRealSize; ++i) {
         if (mem[i] == '\n') {
-            ++k;
-        }
-    }
-    printf("\n%d\n", k);
-
-    PoemLine* poem = (PoemLine *) calloc(k, sizeof(PoemLine));
-
-    int c = 0;
-    poem[0].pointer = &mem[0];
-    for (int i = 0; i < size_spec; ++i) {
-        if (mem[i] == '\n') {
-            poem[c].size = &mem[i] - poem[c].pointer;
-            if (size_spec - i > 1) {
-                poem[++c].pointer = &mem[i + 1];
-                printf("228 %d\n", i);
-            }
+            ++linesNumber;
         }
     }
 
-    printf("\n");
-    for (int i = 0; i < k; ++i) {
-        printf("%p %zu\n", poem[i].pointer, poem[i].size);
+    //! создаем массив структур строк поэмы
+    PoemLine *poem = (PoemLine *) calloc(linesNumber, sizeof(PoemLine));
+    assert(poem);
+    makeLinesIndexesArray(poem, mem, fileRealSize);
+
+    //! сортируем строки
+    sortByTop(poem, linesNumber);
+    sortByEnd(poem, linesNumber);
+
+    //! выводим строки в файл
+    FILE *fileOutput = fopen("../rhymed_onegin.txt", "w");
+    for (size_t p = 0; p < linesNumber; ++p) {
+        char *currentString = poem[p].pointer;
+        fwrite(currentString, sizeof(char), poem[p].size + 1, fileOutput);
     }
+    fclose(fileOutput);
+
+    free(mem);
+    free(poem);
 
     return 0;
 }
