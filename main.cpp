@@ -1,6 +1,6 @@
 //-------------------------------------------------
 //! Onegin program
-//!     @version Vers 2.0
+//!     @version Vers 2.1
 //!     @date 29. 09. 2021
 //!     @brief Solving task #2 for the course "Professional Programming"
 //-------------------------------------------------

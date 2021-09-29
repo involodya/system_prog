@@ -15,10 +15,11 @@ void makeLinesIndexesArray(PoemLine *poem, char *mem, size_t fileRealSize) {
     }
 }
 
-void makeLower(char *c) {
-    if (65 <= *c && *c <= 90) {
-        *c += 32;
+char makeLower(char c) {
+    if (65 <= c && c <= 90) {
+        c += 32;
     }
+    return c;
 }
 
 int cmpByTop(const void *line1, const void *line2) {
@@ -27,11 +28,11 @@ int cmpByTop(const void *line1, const void *line2) {
 
     size_t p = 0;
     while (p < fLine.size && p < sLine.size) {
-        makeLower(&fLine.pointer[p]);
-        makeLower(&sLine.pointer[p]);
-        if (fLine.pointer[p] < sLine.pointer[p]) {
+        char c1 = makeLower(fLine.pointer[p]);
+        char c2 = makeLower(sLine.pointer[p]);
+        if (c1 < c2) {
             return -1;
-        } else if (fLine.pointer[p] > sLine.pointer[p]) {
+        } else if (c1 > c2) {
             return 1;
         }
         ++p;
@@ -51,11 +52,11 @@ int cmpByEnd(const void *line1, const void *line2) {
 
     size_t p = 0;
     while (p < fLine.size && p < sLine.size) {
-        makeLower(&fLine.pointer[fLine.size - p]);
-        makeLower(&sLine.pointer[sLine.size - p]);
-        if (fLine.pointer[fLine.size - p] < sLine.pointer[sLine.size - p]) {
+        char c1 = makeLower(fLine.pointer[fLine.size - p]);
+        char c2 = makeLower(sLine.pointer[sLine.size - p]);
+        if (c1 < c2) {
             return -1;
-        } else if (fLine.pointer[fLine.size - p] > sLine.pointer[sLine.size - p]) {
+        } else if (c1 > c2) {
             return 1;
         }
         ++p;

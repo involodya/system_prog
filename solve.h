@@ -25,9 +25,11 @@ void makeLinesIndexesArray(PoemLine *poem, char *mem, size_t fileRealSize);
 //!
 //! Make symbol c lower ( A -> a )
 //!
-//! @param [out] c some symbol
+//! @param [in] c some symbol
 //!
-void makeLower(char *c);
+//! @return lower c
+//!
+char makeLower(char c);
 
 //!
 //! Sorting poem array by lines start
