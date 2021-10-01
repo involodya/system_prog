@@ -15,6 +15,15 @@
 bool isZero(double n);
 
 //!
+//! Solves line equation bx + c = 0
+//!
+//! @param [in] b b-coefficient
+//! @param [in] c c-coefficient
+//! @param [out] x1 Pointer to the root
+//!
+int lineFunction(double b, double c, double *x1);
+
+//!
 //! Solves a square equation ax2 + bx + c = 0
 //!
 //! @param [in] a a-coefficient

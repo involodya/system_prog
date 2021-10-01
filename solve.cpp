@@ -7,6 +7,19 @@ bool isZero(double n) {
     return false;
 }
 
+int lineFunction(double b, double c, double *x1) {
+    if (isZero(b)) {
+
+        return (isZero(c)) ? SS_INF_ROOTS : 0;
+
+    } else { /* if (b != 0) */
+
+        *x1 = -c / b;
+        return 1;
+
+    }
+}
+
 int SolveSquare(double a, double b, double c, double *x1, double *x2) {
 
     assert(isfinite(a));
@@ -18,16 +31,9 @@ int SolveSquare(double a, double b, double c, double *x1, double *x2) {
     assert(x1 != x2);
 
     if (isZero(a)) {
-        if (isZero(b)) {
 
-            return (isZero(c)) ? SS_INF_ROOTS : 0;
+        return lineFunction(b, c, x1);
 
-        } else { /* if (b != 0) */
-
-            *x1 = -c / b;
-            return 1;
-
-        }
     } else { /* if (a != 0) */
 
         double d = b * b - 4 * a * c;

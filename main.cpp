@@ -1,7 +1,7 @@
 //!
 //! The squire equations solver programme
-//!     @version Vers 2.0
-//!     @date 21. 09. 2021
+//!     @version Vers 2.1
+//!     @date 02. 12. 2021
 //!     @brief Solving task #1 for the course "Professional Programming"
 //!
 
@@ -34,7 +34,10 @@ int main() {
         TestGet(&a, &b, &c, i);
 #else
         printf("# Enter a, b, c: ");
-        scanf("%lg %lg %lg", &a, &b, &c);
+        if (scanf("%lg %lg %lg", &a, &b, &c) != 3) {
+            printf("\nIncorrect input\n");
+            return 0;
+        }
 #endif
         double x1 = 0, x2 = 0;
         int nRoots = SolveSquare(a, b, c, &x1, &x2);
