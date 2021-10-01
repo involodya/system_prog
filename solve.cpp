@@ -4,6 +4,7 @@ void makeLinesIndexesArray(PoemLine *poem, char *mem, size_t fileRealSize) {
     size_t currentLineIndex = 0;
     size_t currentLineSize = 0;
     for (size_t p = 0; p < fileRealSize; ++p) {
+        // strchr
         if (mem[p] == '\n' && currentLineSize != 0) {
             poem[currentLineIndex].pointer = &mem[p - currentLineSize];
             poem[currentLineIndex].size = currentLineSize;
@@ -15,7 +16,7 @@ void makeLinesIndexesArray(PoemLine *poem, char *mem, size_t fileRealSize) {
     }
 }
 
-char makeLower(char c) {
+char makeLower(char c) { // tolower
     if (65 <= c && c <= 90) {
         c += 32;
     }
@@ -25,6 +26,11 @@ char makeLower(char c) {
 int cmpByTop(const void *line1, const void *line2) {
     PoemLine fLine = *(PoemLine *) (line1);
     PoemLine sLine = *(PoemLine *) (line2);
+
+    // aa, b
+    // aa b
+    // a ab
+    // aab
 
     size_t p = 0;
     while (p < fLine.size && p < sLine.size) {
@@ -76,4 +82,8 @@ void sortByTop(PoemLine *poem, size_t linesNumber) {
 
 void sortByEnd(PoemLine *poem, size_t linesNumber) {
     qsort(poem, linesNumber, sizeof(PoemLine), cmpByEnd);
+}
+
+void sortOrigin(PoemLine *poem, const PoemLine *poemSaved, size_t linesNumber) {
+    memcpy(poem, poemSaved, linesNumber * sizeof(PoemLine));
 }

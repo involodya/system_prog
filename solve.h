@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <memory.h>
 
 //!
 //! Structure of poem line
@@ -12,6 +13,8 @@ struct PoemLine {
     char *pointer;
     size_t size;
 };
+
+// TODO: struct text
 
 //!
 //! Make an array of address of lines
@@ -56,3 +59,12 @@ int cmpByTop(const void *line1, const void *line2);
 //! Comparator to sorting poem array by lines start
 //!
 int cmpByEnd(const void *line1, const void *line2);
+
+//!
+//! Restore origin sort
+//!
+//! @param [out] poem poem array
+//! @param [in] poemSaved origin poem array
+//! @param [in] linesNumber number of lines in poem
+//!
+void sortOrigin(PoemLine *poem, const PoemLine *poemSaved, size_t linesNumber);
