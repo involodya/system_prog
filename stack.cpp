@@ -32,6 +32,9 @@ int StackResize(Stack *stack, int capacity) {
     int *data = (int *) calloc(capacity, sizeof(int));
     memcpy(data, stack->data, stack->size * sizeof(int));
 
+    memset(stack->data, 0xFD, stack->capacity * sizeof(int));
+    free(stack->data);
+
     stack->data = data;
     stack->capacity = capacity;
 
