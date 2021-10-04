@@ -30,7 +30,7 @@ int main(/* TODO: int argc, .... */) {
     //! размер файла в байтах без \r
     //! Записываем в mem кусок из fileInput размером fileSize (т.е. весь файл)
     size_t fileRealSize = fread(mem, sizeof(char), fileSize, fileInput);
-    // ERROR
+    // TODO ERROR
     // TODO \0
     // printf("read_size: %zu file_size: %zu \n", fileRealSize, fileSize);
     fclose(fileInput);
