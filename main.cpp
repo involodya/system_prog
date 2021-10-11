@@ -5,16 +5,17 @@
 //!     @brief Solving task #3 for the course "Professional Programming"
 //------------------------------------------------
 
-#include "defines.h"
-#include "stack.h"
-
+#include "dump.h"
 
 int main() {
+    freopen("../log", "w+", stderr);
+
     Stack st = {};
     StackCtor(&st, 3);
     StackPush(&st, 10);
     StackPush(&st, 20);
     StackPush(&st, 30);
+    DUMP(&st);
     int x;
     StackPop(&st, &x);
     printf("Ans.: %d\n", x);
@@ -22,6 +23,7 @@ int main() {
     printf("Ans.: %d\n", x);
     StackPop(&st, &x);
     printf("Ans.: %d\n", x);
-    printf("Capacity: %d\n", st.capacity);
+    printf("Capacity: %zu\n", st.capacity);
     StackDtor(&st);
+
 }
